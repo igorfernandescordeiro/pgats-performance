@@ -5,12 +5,13 @@ import { faker } from 'https://esm.sh/@faker-js/faker';
 
 export default function () {
 
+  console.log(__ENV.USUARIOLOGIN);
   let token;
 
   group('Obtendo o token do usuario', () => {
     const bodyLogin = JSON.stringify({
-      usuarioLogin: 'cgts',
-      usuarioSenha: '123456'
+      usuarioLogin: __ENV.USUARIOLOGIN,
+      usuarioSenha: __ENV.USUARIOSENHA
     });
 
     const opcoesLogin = {
