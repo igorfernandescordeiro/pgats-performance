@@ -1,0 +1,25 @@
+name: Execução Manual K6 Load Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  k6-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run K6 Load Test
+        run: |
+          npm install -g k6
+          k6 run ex01.js
