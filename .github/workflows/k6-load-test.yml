@@ -19,7 +19,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Install K6
+        run: sudo apt update && sudo apt install -y k6
+
       - name: Run K6 Load Test
-        uses: loadimpact/k6-action@v0.3
-        with:
-          filename: ex01.js
+        run: k6 run ex01.js
