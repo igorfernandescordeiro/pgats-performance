@@ -14,12 +14,12 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '20'
 
       - name: Install dependencies
         run: npm install
 
       - name: Run K6 Load Test
-        run: |
-          npm install -g k6
-          k6 run ex01.js
+        uses: loadimpact/k6-action@v0.3
+        with:
+          filename: ex01.js
