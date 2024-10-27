@@ -25,5 +25,12 @@ jobs:
           tar -xzf k6-v0.45.0-linux-amd64.tar.gz
           sudo mv k6-v0.45.0-linux-amd64/k6 /usr/local/bin/
       
-      - name: Run K6 Load Test
-        run: k6 run ex01.js
+      - name: Run K6 Load Test and Generate Report
+        run: k6 run --out json=./report.json ex01.js
+
+      - name: Upload K6 Report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: k6_report
+          path: ./report.json
